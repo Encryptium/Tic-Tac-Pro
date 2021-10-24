@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+* {
+	font-family: 'Lexend', sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+body {
+	height: 100vh;
+	background: linear-gradient(45deg, red, cornflowerblue);
+}
+
+h1 {
+	text-align: center;
+	font-size: 45px;
+	margin-top: 10vh;
+	margin-bottom: 5px;
+}
+
+h2 {
+	text-align: center;
+	font-size: 35px;
+	margin-top: 5vh;
+	font-weight: normal;
+	color: #373737;
+}
+
+p {
+	text-align: center;
+}
+
+input {
+	border: none;
+	height: 30px;
+	width: 200px;
+	border-radius: 4px;
+	background-color: rgba(245, 245, 245, 0.753);
+	display: inline-block;
+	margiN: auto auto 5px auto;
+	transition: background-color 0.5s;
+	color: #373737;
+}
+
+input:focus {
+	background-color: whitesmoke;
+	transition: background-color 0.3s;
+}
+
+div#center {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+a {
+	color: #3d3d3d;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.game-option {
+	background-color: rgba(245, 245, 245, 0.753);
+	padding: 15px;
+	border-radius: 4px;
+
+	cursor: pointer;
+	transition: background-color 0.5s;
+}
+
+.game-option:hover {
+	background-color: rgb(245, 245, 245);
+	transition: background-color 0.3s;
+}
+
+.game-type {
+	font-weight: bold;
+}
+
+#error-footer {
+	width: 100%;
+	height: 30px;
+	background-color: crimson;
+	position: fixed;
+	top: 100vh;
+	transform: translateY(-100%);
+	/* box-shadow: 0 5px 10px rgba(0, 0, 0, .2); */
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding-top: 10px;
+
+	display: none;
+}
+
+/* #error-footer:empty {
+	display: none;
+} */
+
+#error-footer p {
+	color: white;
+	font-weight: bold;
+}

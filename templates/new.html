@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Host a Game | Tic Tac Pro</title>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+	<!-- <a href="/game">Game</a> -->
+
+	<div id="center">
+		<h2>Host a Game</h2>
+
+		<br>
+
+		<form action="/init-game" method="POST">
+			<input type="hidden" name="info" value="newgame">
+			<input type="submit" value="Start Game">
+		</form>
+
+		<br>
+
+		<a href="/join">Join a Game</a>
+	</div>
+	
+</body>
+</html>

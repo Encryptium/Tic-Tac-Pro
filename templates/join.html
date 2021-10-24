@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Join a Game | Tic Tac Pro</title>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+	<!-- <a href="/game">Game</a> -->
+
+	<div id="center">
+		<h2>Join a Game</h2>
+
+		<br>
+
+		<form action="/game" method="GET">
+			<input type="text" name="gameid" placeholder="Join Code">
+			<br>
+			<input type="submit" value="Join as Circle">
+		</form>
+		<br>
+		<a href="/host">Host a Game</a>
+	</div>
+
+	<div id="error-footer">
+		<p>{{ error }}</p>
+	</div>
+
+	<!-- <script>
+		if ("{{ error }}" == null || "{{ error }}" == "") {
+			document.getElementById("error-footer").style.display = 'none';
+		}
+	</script> -->
+	<script src="/static/error.js"></script>
+</body>
+</html>

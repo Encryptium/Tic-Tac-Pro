@@ -1,0 +1,71 @@
+@import url('/static/style.css');
+
+body {
+	height: 100vh;
+	background: linear-gradient(45deg, dodgerblue, lightseagreen);
+}
+
+#board {
+	height: 350px;
+	width: 350px;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	border: 2px solid #181818d0;
+	margin: auto;
+	/* background-color: transparent; */
+	position: absolute;
+	top: 52%;/*50 5*/
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* #board[disabled] {
+	pointer-events: none;
+	cursor: not-allowed;
+} */
+
+.game-cell {
+	border: 2px solid #373737a8;
+	cursor: pointer;
+	outline: none;
+	background-color: transparent;
+}
+
+.game-cell:hover {
+	background-color: rgba(211, 211, 211, 0.5);
+}
+
+.taken {
+	background-color: grey;
+}
+
+.taken:hover {
+	background-color: grey;
+	cursor: not-allowed;
+}
+
+.cross {
+	cursor: not-allowed;
+	background: url(/static/cross.png) no-repeat center;
+	background-size: 90%;
+	/* backdrop-filter: blur(4px); */
+}
+
+.circle {
+	cursor: not-allowed;
+	background: url(/static/circle.png) no-repeat center;
+	background-size: 90%;
+	/* backdrop-filter: blur(4px); */
+}
+
+#code {
+	color: #373737;
+	font-weight: bold;
+}
+
+#join-link {
+	position: absolute;
+	top: 85%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
