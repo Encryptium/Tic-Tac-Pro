@@ -1,3 +1,5 @@
+'use strict';
+
 // if (document.querySelector("#error-footer p").innerHTML == "") {
 // 	document.getElementById("error-footer").style.display = 'none';
 // }

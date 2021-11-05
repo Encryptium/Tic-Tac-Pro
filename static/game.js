@@ -1,5 +1,10 @@
-const joinLink = document.querySelector("#join-link");
-const linkTemplate = `Join Code: <span id="code">${gameID}</span>`;
+'use strict';
+
+const joinLink = document.querySelector("#code");
+const joinContainer = document.querySelector("#code-container");
+// join-code
+const linkTemplate = `${gameID}`;
+//  `Join Code: <span id="code">${gameID}</span>`
 const board = document.getElementById("board");
 
 const winningCombos = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [3, 6, 9], [2, 5, 8], [3, 5, 7], [1, 5, 9]];
@@ -7,7 +12,8 @@ const winningCombos = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [3, 6, 9], [2
 if (player == "cross") {
 	joinLink.innerHTML = linkTemplate;
 } else {
-	joinLink.innerHTML = "<span id=\"code\">You are playing a game hosted by someone else.</span>";
+	joinLink.innerHTML = "You are playing a game hosted by someone else.";
+	joinContainer.remove();
 }
 
 function checkStatus() {
@@ -53,11 +59,11 @@ function switchTurn(team) {
 	if (team == player) {
 		board.disabled = false;
 		board.style.pointerEvents = 'auto';
-		document.getElementById("turn").innerHTML = "YOUR TURN";
+		document.getElementById("turn").innerHTML = "YOU";
 	} else {
 		board.disabled = true;
 		board.style.pointerEvents = 'none';
-		document.getElementById("turn").innerHTML = "OPPONENT'S TURN";
+		document.getElementById("turn").innerHTML = "OPPONENT";
 	}
 }
 

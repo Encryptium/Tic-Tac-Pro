@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" dir="ltr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,15 +15,27 @@
 		const player = "{{ team }}";
 		// const circlePwd = "{{ circle_pwd }}";
 		const gameID = "{{ gameID }}";
+		const type = "{{ gametype }}";
 	</script>
 
 	<h1>Live Game</h1>
-	<p id="turn">LOADING...</p>
+	<div id="turn-container">
+		<div id="turn-shard"></div>
+		<p id="turn-heading">Turn</p>
+		<p id="turn">LOADING...</p>
+	</div>
+	
 	<!-- {{ current_turn }}'s Turn -->
 	<!-- <br>
 	<br>
 	<br> -->
-	<p id="join-link"></p>
+	<div id="code-container">
+		<div id="code-shard"></div>
+		<p id="code-heading">Join Code</p>
+		<p id="code"></p>
+	</div>
+
+	<button id="rematch-btn">Rematch?</button>
 
 	<!-- <br> -->
 
@@ -38,6 +50,8 @@
 		<div class="game-cell" id="8"></div>
 		<div class="game-cell" id="9"></div>
 	</div>
+
+	<a href="https://github.com/JonathanW2018/Tic-Tac-Pro" id="version" title="Powered By Tic Tac Pro">Loading...</a>
 
 	<div id="error-footer">
 		<p></p>

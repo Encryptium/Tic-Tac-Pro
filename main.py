@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 socket = SocketIO(app)
 
+VERSION = "0.2.0"
 games = []
 
 def generate_id_function():
@@ -27,9 +28,13 @@ def update_game(game_id):
 	# game_id = room.split('?gameid=')[1].split("&")[0]
 	for game in games:
 		if game_id == game['id']:
-			emit('game_update', game, to=game_id)
+			safe_info = game.copy()
+			safe_info.pop("cross")
+			safe_info['version'] = VERSION
+			emit('game_update', safe_info, to=game_id)
 			return
-	send('An error occured while updating the game.', to=game_id)
+	# send('An error occured while updating the game.', to=game_id)
+	send('UpdateError', to=game_id)
 	# return "An error occured while updating the game."
 
 # def check_status(game_id):
@@ -53,7 +58,7 @@ def handle_player_connection(data):
 	join_room(room)
 	update_game(room)
 	print("Joined Game: " + room);
-	send("Other Player Has Joined Game", to=room)
+	send("Player Has Joined Game", to=room)
 
 @socket.on("send_move")
 def handle_move(data):
@@ -91,6 +96,19 @@ def end_game(game_id):
 			print("Game Deleted: " + game_id)
 			return
 
+@socket.on('rematch')
+def rematch(data):
+	for game in games:
+		if game['id'] == data['game_id']:
+			emit('error', "Could not rematch")
+			return
+	
+	if data['cross'] == "":
+		return
+		
+	games.append({"id": data['game_id'], "cross": data['cross'], "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None})
+	send("reload", to=data['game_id'])
+
 @app.route("/")
 def index():
 	return render_template("index.html")
@@ -107,13 +125,15 @@ def join():
 
 @app.route("/game", methods=['GET'])
 def game():
-	game_id = request.args.get("gameid").replace(" ", "")
-	cross = request.args.get("cross")
-	# circle = request.args.get("circle")
-	if game_id == None:
+	# Don't create game_id var here because it will cause page to crash since there is no .replace attr on None type
+	if request.args.get("gameid") == None:
 		# return "Invalid Game"
 		return redirect("/join")
 	else:
+		game_id = request.args.get("gameid").replace(" ", "")
+		cross = request.args.get("cross")
+		gametype = request.args.get("type")
+		# circle = request.args.get("circle")
 		for game in games:
 			if game_id == game['id']:
 				if cross != None and cross == game['cross']:
@@ -121,31 +141,33 @@ def game():
 				elif cross != None and cross != game['cross']:
 					return "Invalid Requirements"		
 				else:
-					return render_template("game.html", team="circle", gameID=game_id)
+					return render_template("game.html", team="circle", gameID=game_id, gametype=gametype)
 			else:
 				continue
 		return redirect("/join?error=invalid")
 
-@app.route("/init-game", methods=['POST'])
+@app.route("/init-game")
 def init_game():
-	info = request.form.get('info')
-	if info == "newgame":
+	# info = request.form.get('info')
+	# if info == "newgame":
 		# Generated IDs
-		generated_id = generate_id_function()
-		cross_password = str(uuid.uuid1())
-		# circle_password = str(uuid.uuid1())
-		# print(cross_password, circle_password)
+	if len(games) == 9000000:
+		return "Tic Tac Pro is currently unavailable."
+	generated_id = generate_id_function()
+	cross_password = str(uuid.uuid1())
+	# circle_password = str(uuid.uuid1())
+	# print(cross_password, circle_password)
 
-		# Default Game Data
-		games.append({"id": generated_id, "cross": cross_password, "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None})
-		print("Created Game: " + generated_id)
-		return redirect(f"/game?gameid={generated_id}&cross={cross_password}")
+	# Default Game Data
+	games.append({"id": generated_id, "cross": cross_password, "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None})
+	print("Created Game: " + generated_id)
+	return redirect(f"/game?gameid={generated_id}&cross={cross_password}")
 
-	return "Error creating game"
+	# return "Error creating game"
 
 @app.route("/host")
 def host_game():
 	return render_template("new.html")
 
 if __name__ == '__main__':
-  socket.run(app, host='0.0.0.0', port=8080, debug=False)
+  socket.run(app, host='0.0.0.0', port=8080, debug=True)
