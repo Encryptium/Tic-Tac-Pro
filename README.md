@@ -25,8 +25,9 @@ If you ever get these errors below, follow the steps listed. If you don't know w
 If you are trying to join a game, and at the bottom of the page, an error pops up, follow these steps.
 - Make sure you've typed you code correctly.
 - If you've just finished the game with that join code, then that game is deleted. You will not be able to join anymore. Create a new game if you want.
-### Connection Error
-If you are on the game page, and a red error suddenly appears at the bottom which says `Lost connection. Refresh page to reset.`, then DO WHAT IT SAYS! Stop looking here and refresh that page.
+### Connection Error & Update Error
+If you are on the game page, and a red error suddenly appears at the bottom which says `Lost connection. Refresh page to reset.`, then DO WHAT IT SAYS! Stop looking here and refresh that page. 
+Or you might receive an error which says `An error occured while updating the game. Please Refresh.`, in that case, also refresh the page.
 
 If you're still here, that means you are probably interested. Look at the reasons why this may occur below if you are.
 - You may have lost connection (Internet). Check your connection, and refresh.
