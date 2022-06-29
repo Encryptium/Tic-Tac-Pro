@@ -1,0 +1,6 @@
+{
+	"name": "Tic Tac Pro",
+	"description": "Play live Tic Tac Toe games online!",
+	"repository": "https://github.com/Encryptium/Tic-Tac-Pro",
+	"keywords": ["python", "flask", "tictactoe", "game", "live"]
+}

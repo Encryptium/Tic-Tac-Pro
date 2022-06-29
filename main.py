@@ -69,15 +69,21 @@ def handle_move(data):
 	player = data['player']
 	pwd = data['pwd']
 
+
 	# print(game_id, move, player, pwd)
 	for game in games:
 		# print(game_id, game['id'])
 		if game_id == game['id']:
 			if game[move] == None:
 				if pwd == "" or pwd == game[player]:
-					game[move] = player
-					send("Move Verfied", to=game_id)
-					break
+					if player == game['turn']:
+						game[move] = player
+						if player == "cross":
+							game['turn'] = "circle"
+						else:
+							game['turn'] = "cross"
+						send("Move Verfied", to=game_id)
+						break
 				else:
 					send("You are not authorized to perform that move.", to=game_id)
 					break
@@ -105,8 +111,14 @@ def rematch(data):
 	
 	if data['cross'] == "":
 		return
+
+	firstplayer = "circle"
+
+	# Generate random player on rematch
+	players = ["circle", "cross"]
+	firstplayer = players[random.randint(0, 1)]
 		
-	games.append({"id": data['game_id'], "cross": data['cross'], "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None})
+	games.append({"id": data['game_id'], "cross": data['cross'], "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None, "turn": firstplayer})
 	send("reload", to=data['game_id'])
 
 @app.route("/")
@@ -132,7 +144,6 @@ def game():
 	else:
 		game_id = request.args.get("gameid").replace(" ", "")
 		cross = request.args.get("cross")
-		gametype = request.args.get("type")
 		# circle = request.args.get("circle")
 		for game in games:
 			if game_id == game['id']:
@@ -141,7 +152,7 @@ def game():
 				elif cross != None and cross != game['cross']:
 					return "Invalid Requirements"		
 				else:
-					return render_template("game.html", team="circle", gameID=game_id, gametype=gametype)
+					return render_template("game.html", team="circle", gameID=game_id)
 			else:
 				continue
 		return redirect("/join?error=invalid")
@@ -159,7 +170,7 @@ def init_game():
 	# print(cross_password, circle_password)
 
 	# Default Game Data
-	games.append({"id": generated_id, "cross": cross_password, "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None})
+	games.append({"id": generated_id, "cross": cross_password, "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None, "turn": "cross"})
 	print("Created Game: " + generated_id)
 	return redirect(f"/game?gameid={generated_id}&cross={cross_password}")
 

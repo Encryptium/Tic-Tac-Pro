@@ -28,7 +28,7 @@ socket.on('connect', function() {
 // Handle disconnection with server
 socket.on('disconnect', function() {
   // window.alert("Lost connection with server.\nRefresh page to reset your connection.");
-	showError("Lost connection. Refresh page to reset.");
+	showError("Connection Failed. Please refresh.");
 	// location.reload();
 });
 
@@ -44,7 +44,7 @@ socket.on('message', function(data) {
 		}
 	}
 	if (data == "UpdateError") {
-		showError("An error occured while updating the game. Please Refresh.");
+		showError("Failed to update game. Please refresh.");
 	}
 });
 
@@ -117,5 +117,5 @@ function sendMove(move) {
 }
 
 rematch.addEventListener('click', () => {
-	socket.emit('rematch', {game_id: gameID, cross: pwd});
+	socket.emit('rematch', {game_id: gameID, player: player, cross: pwd});
 });

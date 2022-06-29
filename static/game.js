@@ -62,7 +62,7 @@ function switchTurn(team) {
 		document.getElementById("turn").innerHTML = "YOU";
 	} else {
 		board.disabled = true;
-		board.style.pointerEvents = 'none';
+		board.style.pointerEvents = 'auto';
 		document.getElementById("turn").innerHTML = "OPPONENT";
 	}
 }
