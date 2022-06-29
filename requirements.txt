@@ -3,6 +3,5 @@ Flask-SocketIO
 simple-websocket
 Werkzeug
 uuid
-random
 os
 gunicorn
