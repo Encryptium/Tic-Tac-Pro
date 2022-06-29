@@ -1,6 +1,8 @@
 Flask
 Flask-SocketIO
 simple-websocket
+eventlet
+gevent-websocket
 Werkzeug
 uuid
 gunicorn
