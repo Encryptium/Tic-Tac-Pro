@@ -181,4 +181,4 @@ def host_game():
 	return render_template("new.html")
 
 if __name__ == '__main__':
-  socket.run(app, host="0.0.0.0", port=8080)
+  socket.run(app)#, host="0.0.0.0", port=5004)
