@@ -111,7 +111,7 @@ a {
 }
 
 #winner-declaration {
-	height: 250px;
+	height: 265px;
 	width: 300px;
 	position: fixed;
 	top: 45%;
@@ -119,10 +119,20 @@ a {
 	transform: translate(-50%, -50%);
 	z-index: 99;
 	border-radius: 9px;
-	background-color: rgba(255, 255, 255, 0.75);
+	background-color: rgba(245, 245, 245, 0.8);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.027), 
 							0 6px 15px 0 rgba(0, 0, 0, 0.103);
 	display: none;
+}
+
+#winner-declaration span {
+	font-weight: bold;
+	position: absolute;
+	right: 12px;
+	top: 5px;
+	font-size: 18px;
+	font-family: 'IBM Plex Mono', monospace;
+	cursor: pointer;
 }
 
 #winner-declaration #header {
@@ -143,5 +153,5 @@ a {
 }
 
 #winner-declaration p {
-	margin-top: 15px;
+	margin: 15px;
 }

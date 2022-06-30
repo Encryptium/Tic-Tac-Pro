@@ -61,3 +61,7 @@ cells.forEach(cell => {
     sendMove(cell.id);
   });
 });
+
+document.getElementById("close-winner").addEventListener('click', e => {
+	document.getElementById("close-winner").parentElement.style.display = "none";
+});

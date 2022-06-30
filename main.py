@@ -2,14 +2,13 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_socketio import SocketIO, emit, join_room, send
 import os
-import uuid
 import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 socket = SocketIO(app)
 
-VERSION = "0.2.1"
+VERSION = "0.2.2"
 games = []
 
 def generate_id_function():
