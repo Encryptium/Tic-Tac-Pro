@@ -18,18 +18,13 @@ if (player == "cross") {
 
 function checkStatus() {
 	for (var i = 0; i < 8; i++) {
-		// console.log(cells[winningCombos[i][0]]);
-		// console.log(cells[winningCombos[i][1]]);
-		// console.log(cells[winningCombos[i][2]]);
-
-		// console.log(`${cells[winningCombos[i][0]-1].className} ${cells[winningCombos[i][2]-1].className} ${cells[winningCombos[i][0]-1].className}`);
-
 		if ((document.getElementById([winningCombos[i][0]]).className == `game-cell cross`) 
 		&& (document.getElementById([winningCombos[i][1]]).className == `game-cell cross`)
 		&& (document.getElementById([winningCombos[i][2]]).className == `game-cell cross`)) {
+			console.log("hi");
 			return "cross";
 		} 
-		else if ((document.getElementById([winningCombos[i][0]]).className == `game-cell circle`) 
+		if ((document.getElementById([winningCombos[i][0]]).className == `game-cell circle`) 
 		&& (document.getElementById([winningCombos[i][1]]).className == `game-cell circle`)
 		&& (document.getElementById([winningCombos[i][2]]).className == `game-cell circle`)) {
 			return "circle";
@@ -37,15 +32,9 @@ function checkStatus() {
 	}
 
 	for (var i = 0; i < 9; i++) {
-		// var j = i+1;
 		if (cells[i].className == 'game-cell') {
-			// console.log("9");
-			// continue;
 			break;
 		}
-		// } else {
-		// 	break;
-		// }
 
 		if (i == 8) {
 			return "nobody";

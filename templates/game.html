@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Live Game | Tic Tac Pro</title>
 	<link rel="stylesheet" href="/static/game.css">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -48,6 +49,11 @@
 		<div class="game-cell" id="7"></div>
 		<div class="game-cell" id="8"></div>
 		<div class="game-cell" id="9"></div>
+	</div>
+
+	<div id="winner-declaration">
+		<div id="header"><h2>Winner!</h2></div>
+		<p>Congratulations! <b></b> won this round of Tic Tac Toe. You can <a href="/init-game">host a game</a> or <a href="/join">join another game</a>.</p>
 	</div>
 
 	<a href="https://github.com/JonathanW2018/Tic-Tac-Pro" id="version" title="Powered By Tic Tac Pro">Loading...</a>

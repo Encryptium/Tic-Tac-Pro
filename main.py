@@ -1,5 +1,5 @@
 # MaroonAmbitiousDesigner
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from flask_socketio import SocketIO, emit, join_room, send
 import os
 import uuid
@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 socket = SocketIO(app)
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 games = []
 
 def generate_id_function():
@@ -29,7 +29,6 @@ def update_game(game_id):
 	for game in games:
 		if game_id == game['id']:
 			safe_info = game.copy()
-			safe_info.pop("cross")
 			safe_info['version'] = VERSION
 			emit('game_update', safe_info, to=game_id)
 			return
@@ -100,26 +99,25 @@ def end_game(game_id):
 		if game['id'] == game_id:
 			games.remove(game)
 			print("Game Deleted: " + game_id)
+			session.clear()
 			return
 
-@socket.on('rematch')
-def rematch(data):
-	for game in games:
-		if game['id'] == data['game_id']:
-			emit('error', "Could not rematch")
-			return
+# @socket.on('rematch')
+# def rematch(data):
+# 	for game in games:
+# 		if game['id'] == data['game_id']:
+# 			emit('error', "Could not rematch")
+# 			return
 	
-	if data['cross'] == "":
-		return
+# 	if data['player'] == "cross":
+# 		pass
 
-	firstplayer = "circle"
-
-	# Generate random player on rematch
-	players = ["circle", "cross"]
-	firstplayer = players[random.randint(0, 1)]
+# 	# Generate random player on rematch
+# 	players = ["circle", "cross"]
+# 	firstplayer = players[random.randint(0, 1)]
 		
-	games.append({"id": data['game_id'], "cross": data['cross'], "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None, "turn": firstplayer})
-	send("reload", to=data['game_id'])
+# 	games.append({"id": data['game_id'], "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None, "turn": firstplayer})
+# 	send("reload", to=data['game_id'])
 
 @app.route("/")
 def index():
@@ -139,18 +137,15 @@ def join():
 def game():
 	# Don't create game_id var here because it will cause page to crash since there is no .replace attr on None type
 	if request.args.get("gameid") == None:
-		# return "Invalid Game"
 		return redirect("/join")
 	else:
+		# Client side pin
 		game_id = request.args.get("gameid").replace(" ", "")
-		cross = request.args.get("cross")
-		# circle = request.args.get("circle")
+		
 		for game in games:
 			if game_id == game['id']:
-				if cross != None and cross == game['cross']:
-					return render_template("game.html", pwd=cross, team="cross", gameID=game_id)
-				elif cross != None and cross != game['cross']:
-					return "Invalid Requirements"		
+				if ((game_id + "IsHost") in session) and (session[game_id + "IsHost"] == "true"):
+					return render_template("game.html", team="cross", gameID=game_id)
 				else:
 					return render_template("game.html", team="circle", gameID=game_id)
 			else:
@@ -159,20 +154,17 @@ def game():
 
 @app.route("/init-game")
 def init_game():
-	# info = request.form.get('info')
-	# if info == "newgame":
-		# Generated IDs
+	# Game unavailable if ran out of game codes
 	if len(games) == 9000000:
 		return "Tic Tac Pro is currently unavailable."
+		
 	generated_id = generate_id_function()
-	cross_password = str(uuid.uuid1())
-	# circle_password = str(uuid.uuid1())
-	# print(cross_password, circle_password)
 
 	# Default Game Data
-	games.append({"id": generated_id, "cross": cross_password, "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None, "turn": "cross"})
+	session[generated_id+"IsHost"] = "true"
+	games.append({"id": generated_id, "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None, "turn": "cross"})
 	print("Created Game: " + generated_id)
-	return redirect(f"/game?gameid={generated_id}&cross={cross_password}")
+	return redirect(f"/game?gameid={generated_id}")
 
 	# return "Error creating game"
 
@@ -181,4 +173,4 @@ def host_game():
 	return render_template("new.html")
 
 if __name__ == '__main__':
-  socket.run(app)#, host="0.0.0.0", port=5004)
+  socket.run(app, host="0.0.0.0", port=8080, debug=True)
