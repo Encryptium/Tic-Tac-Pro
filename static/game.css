@@ -10,7 +10,7 @@ body {
 	width: 350px;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
-	border: 2px solid #181818d0;
+/* 	border: 2px solid #181818d0; */
 	margin: auto;
 	/* background-color: transparent; */
 	position: absolute;
@@ -25,10 +25,11 @@ body {
 } */
 
 .game-cell {
-	border: 2px solid #373737a8;
+/* 	border: 2px solid #373737a8; */
 	cursor: pointer;
 	outline: none;
 	background-color: transparent;
+	border-radius: 9px;
 }
 
 .game-cell:hover {
@@ -47,15 +48,66 @@ body {
 .cross {
 	cursor: not-allowed;
 	background: url(/static/cross.png) no-repeat center;
-	background-size: 90%;
+	background-size: 75%;
 	/* backdrop-filter: blur(4px); */
 }
 
 .circle {
 	cursor: not-allowed;
 	background: url(/static/circle.png) no-repeat center;
-	background-size: 90%;
+	background-size: 75%;
 	/* backdrop-filter: blur(4px); */
+}
+
+#vert-grid-separators {
+	height: 350px;
+	width: 350px;
+	position: absolute;
+	top: 47%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+/* 	outline: 2px dashed orangered; */
+	display: flex;
+	pointer-events: none;
+}
+
+.vert-sect {
+	flex: 1;
+	height: 100%;
+/* 	border-radius: 10px; */
+	background-color: transparent;
+}
+
+#vert-center {
+	border-left: 15px solid rgb(207, 228, 240);
+	border-right: 15px solid rgb(207, 230, 240);
+	border-radius: 9px;
+}
+
+#horiz-grid-separators {
+	height: 350px;
+	width: 350px;
+	position: absolute;
+	top: 47%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+/* 	outline: 2px dashed orangered; */
+	display: flex;
+	flex-direction: column;
+	pointer-events: none;
+}
+
+.horiz-sect {
+	flex: 1;
+	height: 100%;
+/* 	border-radius: 10px; */
+	background-color: transparent;
+}
+
+#horiz-center {
+	border-top: 15px solid rgb(207, 230, 240);
+	border-bottom: 15px solid rgb(207, 230, 240);
+	border-radius: 9px;
 }
 
 /* Bold display code */
@@ -79,7 +131,7 @@ body {
 }
 
 #code-shard {
-	width: 150px; /*.130.>*/
+	width: 190px; /*.130.>*/ /*150*/
 	border-top: 65px solid #373737;/*65*/
   border-right: 50px solid transparent;
 
@@ -111,7 +163,7 @@ body {
 }
 
 #turn-shard {
-	width: 150px;/*160*/
+	width: 190px;/*160*/
 	border-bottom: 65px solid #373737;
   border-left: 50px solid transparent;
 	float: right;

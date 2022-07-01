@@ -8,32 +8,27 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 socket = SocketIO(app)
 
-VERSION = "0.2.2"
+VERSION = "1.0.0"
 games = []
 
 def generate_id_function():
-	# generated_id = str(uuid.uuid1())
 	generated_id = str(random.randint(1000000, 9999999))
 
 	for game in games:
 		if generated_id == game['id']:
-			# generated_id = str(uuid.uuid1())
 			generate_id_function()
 		else:
 			continue
 	return generated_id
 
 def update_game(game_id):
-	# game_id = room.split('?gameid=')[1].split("&")[0]
 	for game in games:
 		if game_id == game['id']:
 			safe_info = game.copy()
 			safe_info['version'] = VERSION
 			emit('game_update', safe_info, to=game_id)
 			return
-	# send('An error occured while updating the game.', to=game_id)
 	send('UpdateError', to=game_id)
-	# return "An error occured while updating the game."
 
 # def check_status(game_id):
 # 	for game in games:
