@@ -4,7 +4,7 @@ const cells = document.querySelectorAll(".game-cell");
 var move;
 const turn = document.getElementById("turn");
 const turnHeading = document.getElementById("turn-heading");
-const version = document.getElementById("version");
+// const version = document.getElementById("version");
 
 // Initiate socket connection
 var socket = io();
@@ -16,6 +16,7 @@ socket.on('connect', function() {
 
 // Handle disconnection with server
 socket.on('disconnect', function() {
+	document.getElementById("watermark").title = "Connection Failed";
 	showError("Connection Failed. Please refresh.");
 });
 
@@ -30,7 +31,8 @@ socket.on('message', function(data) {
 
 // Handle new move data
 socket.on('game_update', function(data) {
-	version.innerHTML = "Tic Tac Pro v" + data['version'];
+	// version.innerHTML = "Tic Tac Pro v" + data['version'];
+	document.getElementById("watermark").title = "Connected!";
 
 	for (var i = 0; i < 9; i++) {
 		if (data[i+1] != null) {

@@ -9,23 +9,24 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+	{% include 'navbar.html' %}
 
 	<div id="center">
 		<h2>Tic Tac Pro</h2>
 
 		<br>
 
-	  <div class="game-option" onclick="window.location.href='/init-game'">
+	  <a class="game-option" href="/init-game">
       <p class="game-type">Host Game</p>
 		  <p class="game-description">Host a Tic Tac Toe game where someone else joins.</p>
-	  </div>
+	  </a>
 
 		<br>
 	
-	  <div class="game-option" onclick="window.location.href='/join'">
+	  <a class="game-option" href="/join">
 		  <p class="game-type">Join Game</p>
 		  <p class="game-description">Join a game someone else is hosting.</p>
-	  </div>
+	  </a>
   </div>
 </body>
 </html>

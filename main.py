@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 socket = SocketIO(app)
 
-VERSION = "1.0.1"
+VERSION = "1.1.0"
 games = []
 
 def generate_id_function():

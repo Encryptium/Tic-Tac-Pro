@@ -1,0 +1,14 @@
+{% if url_for(request.endpoint) != "/" %}
+	<div id="back-home">
+		<a href="/">&lt; Home</a>
+	</div>
+{% endif %}
+
+<nav>
+	<ul>
+		<li><a href="/privacy">Privacy</a></li>
+		<li><a href="//github.com/Encryptium/Tic-Tac-Pro" target="_blank">Code</a></li>
+	</ul>
+</nav>
+
+<img id="watermark" src="/static/logo.svg" width="75" title="Game Not Started">

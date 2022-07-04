@@ -19,6 +19,8 @@
 		const type = "{{ gametype }}";
 	</script>
 
+	{% include 'navbar.html' %}
+
 	<h1>Live Game</h1>
 	<div id="turn-container">
 		<div id="turn-shard"></div>
@@ -74,7 +76,7 @@
 		<p><b></b> won this round of Tic Tac Toe! You can <a href="/init-game">host a new game</a> or <a href="/join">join another game</a>.</p>
 	</div>
 
-	<a href="https://github.com/JonathanW2018/Tic-Tac-Pro" id="version" title="Powered By Tic Tac Pro">Loading...</a>
+<!-- 	<a href="https://github.com/JonathanW2018/Tic-Tac-Pro" id="version" title="Powered By Tic Tac Pro">Loading...</a> -->
 
 	<div id="error-footer">
 		<p></p>
