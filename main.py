@@ -144,5 +144,9 @@ def init_game():
 def host_game():
 	return render_template("new.html")
 
+@app.route("/privacy")
+def privacy_policy():
+	return render_template("privacy_policy.html")
+
 if __name__ == '__main__':
   socket.run(app, host="0.0.0.0", port=8080, debug=True)
