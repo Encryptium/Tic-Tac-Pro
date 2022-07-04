@@ -122,11 +122,6 @@ def init_game():
 	print("Created Game: " + generated_id)
 	return redirect(f"/game?gameid={generated_id}")
 
-
-@app.route("/host")
-def host_game():
-	return render_template("new.html")
-
 @app.route("/privacy")
 def privacy_policy():
 	return render_template("privacy_policy.html")
