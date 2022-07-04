@@ -30,23 +30,8 @@ def update_game(game_id):
 			return
 	send('UpdateError', to=game_id)
 
-# def check_status(game_id):
-# 	for game in games:
-# 		if game_id == game['id']:
-# 			for combo in winningCombos:
-# 				if game[combo[0]] == game[combo[1]] == game[combo[2]]:
-# 					return game[combo[0]]
-# 				else:
-# 					continue
-# 			return None
-# 		else:
-# 			continue
-# 	return None
-
 @socket.on("join")
 def handle_player_connection(data):
-	# emit('broadcast_connection', {"data": "new_connection"}, broadcast=True)
-	# room = data['room'].split('?gameid=')[1].split("&")[0]
 	room = data['room']
 	join_room(room)
 	update_game(room)
@@ -55,17 +40,13 @@ def handle_player_connection(data):
 
 @socket.on("send_move")
 def handle_move(data):
-	# room = data['room']
 	game_id = data['room']
-	# print(game_id)
 	move = data['location']
 	player = data['player']
 	pwd = data['pwd']
 
 
-	# print(game_id, move, player, pwd)
 	for game in games:
-		# print(game_id, game['id'])
 		if game_id == game['id']:
 			if game[move] == None:
 				if pwd == "" or pwd == game[player]:
@@ -84,11 +65,9 @@ def handle_move(data):
 				send("That spot is already taken!", to=game_id)
 				break
 	update_game(game_id)
-	# emit('new_move', data, to=room)
 
 @socket.on("end_game")
 def end_game(game_id):
-	# print("delt")
 	for game in games:
 		if game['id'] == game_id:
 			games.remove(game)
@@ -123,7 +102,7 @@ def join():
 	
 	if error == "invalid":
 		return render_template("join.html", error="Invalid Game Code!")
-	else: # error == None or error == ""
+	else:
 		return render_template("join.html")
 	
 
@@ -160,7 +139,6 @@ def init_game():
 	print("Created Game: " + generated_id)
 	return redirect(f"/game?gameid={generated_id}")
 
-	# return "Error creating game"
 
 @app.route("/host")
 def host_game():
