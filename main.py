@@ -75,23 +75,6 @@ def end_game(game_id):
 			session.clear()
 			return
 
-# @socket.on('rematch')
-# def rematch(data):
-# 	for game in games:
-# 		if game['id'] == data['game_id']:
-# 			emit('error', "Could not rematch")
-# 			return
-	
-# 	if data['player'] == "cross":
-# 		pass
-
-# 	# Generate random player on rematch
-# 	players = ["circle", "cross"]
-# 	firstplayer = players[random.randint(0, 1)]
-		
-# 	games.append({"id": data['game_id'], "1": None, "2": None, "3": None, "4": None, "5": None, "6": None, "7": None, "8": None, "9": None, "turn": firstplayer})
-# 	send("reload", to=data['game_id'])
-
 @app.route("/")
 def index():
 	return render_template("index.html")
