@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Live Game | Tic Tac Pro</title>
-	<link rel="stylesheet" href="/static/game.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8188107627844775"
-     crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block styles %}
+	<link rel="stylesheet" href="/static/game.css">
+{% endblock %}
+
+{% block content %}
 	<script>
 		// Vars
 		const pwd = "{{ pwd }}";
@@ -18,8 +12,6 @@
 		const gameID = "{{ gameID }}";
 		const type = "{{ gametype }}";
 	</script>
-
-	{% include 'navbar.html' %}
 
 	<h1>Live Game</h1>
 	<div id="turn-container">
@@ -85,5 +77,5 @@
 	<script src="/static/error.js"></script>
 	<script src="/static/connection.js"></script>
 	<script src="/static/game.js"></script>
-</body>
-</html>
+
+{% endblock %}

@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tic Tac Pro</title>
+{% extends 'base.html' %}
+
+{% block styles %}
 	<link rel="stylesheet" href="/static/style.css">
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8188107627844775"
-     crossorigin="anonymous"></script>
-</head>
-<body>
-	{% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
 
 	<div id="center">
 		<h2>Tic Tac Pro</h2>
@@ -28,5 +23,5 @@
 		  <p class="game-description">Join a game someone else is hosting.</p>
 	  </a>
   </div>
-</body>
-</html>
+
+{% endblock %}
