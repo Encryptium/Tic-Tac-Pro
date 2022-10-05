@@ -260,6 +260,7 @@ body {
 
 #game-ad-left *, #game-ad-right * {
     border-radius: 15px;
+    border: none;
 }
 
 
