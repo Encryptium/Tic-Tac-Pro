@@ -220,6 +220,48 @@ body {
 	cursor: pointer;
 }
 
+#game-ad-left {
+	/* font-weight: bold; */
+	font-weight: normal;
+	font-family: 'Lexend', sans-serif;
+	position: absolute;
+	top: 42%;
+	left: 25px;
+    transform: translateY(-50%);
+    height: 65%;
+    width: 25%;
+	color: #646464;
+	margin: 10px;
+	cursor: pointer;
+	border: none;
+    border-radius: 15px;
+	background: transparent;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#game-ad-right {
+    /* font-weight: bold; */
+    font-weight: normal;
+    font-family: 'Lexend', sans-serif;
+    position: absolute;
+    top: 42%;
+    right: calc(25px);
+    transform: translateY(-50%);
+    height: 65%;
+    width: 25%;
+    color: #646464;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    background: transparent;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#game-ad-left *:first-child, #game-add-right *:first-child {
+    border-radius: 15px;
+}
+
 @media only screen and (max-width: 768px) {
   h1 {
     display: none;
