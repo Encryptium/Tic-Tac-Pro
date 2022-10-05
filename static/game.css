@@ -282,3 +282,9 @@ body {
     display: none;
   }
 }
+
+@media only screen and (max-width: 878px) {
+    #game-ad-left, #game-ad-right, #game-ad-left *, #game-ad-right * {
+        display: none;
+    }
+}
