@@ -134,7 +134,7 @@ wsproto = "*"
 
 [[package]]
 name = "werkzeug"
-version = "2.0.2"
+version = "2.2.3"
 description = "The comprehensive WSGI web application library."
 category = "main"
 optional = false
